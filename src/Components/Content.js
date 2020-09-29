@@ -1,19 +1,57 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
+import Name from "../Components/Name";
 
-// export default class Content extends Component {
+//Class Component
+
+// class Content extends Component {
+//   getBatch() {
+//     return 16 + 2;
+//   }
+
 //   render() {
+//     const bootcamp = "Dumbways.id";
 //     return (
 //       <div className="App-header">
-//         <p>Selamat Data Batch #18 Botcamp Dumbways.id</p>
+//         <p>
+//           Selamat Data Batch #{this.getBatch()} Botcamp {bootcamp}
+//         </p>
 //       </div>
 //     );
 //   }
 // }
 
+//functional Component
+
 function Content() {
+  function getBatch() {
+    return 16 + 2;
+  }
+
+  function exAlert() {
+    return alert("This is Example Event Guyss");
+  }
+
+  const bootcamp = "Dumbways.id";
+
   return (
     <div className="App-header">
-      <p>Selamat Data Batch #18 Botcamp Dumbways.id</p>
+      <p>
+        Selamat Data Batch #{getBatch()} Botcamp {bootcamp}
+      </p>
+
+      <button onClick={() => exAlert()}>Hit Me</button>
+
+      <img
+        src="https://vignette.wikia.nocookie.net/onepiece/images/e/e1/Monkey_D._Garp_Anime_Infobox.png/revision/latest?cb=20140914022458"
+        style={{ width: "300px", height: "300px" }}
+      />
+      <br></br>
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/1/10/Zayn_Wiki_%28cropped%29.jpg"
+        style={{ width: "300px", height: "300px" }}
+      />
+
+      <Name />
     </div>
   );
 }
