@@ -1,56 +1,93 @@
-import React, { Component, useState } from "react";
+import React from "react";
 import "./App.css";
 
-//Import Component
-import Header from "./Components/Header";
-import Content from "./Components/Content";
-import Incre from "./Pages/Increment";
-import Todo from "./Pages/Todo";
-import GuestPage from "./Pages/Guest";
-import Css from "./Pages/Css";
-import MapArray from "./Pages/mapArray";
-import MapJson from "./Pages/mapJson";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Link,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 //Import Pages
-
-// export default class App extends Component {
-//   render() {
-//     return (
-//       <div className="App">
-//         <Header />
-//         <Content />
-//       </div>
-//     );
-//   }
-// }
+import Todos from "./Pages/Todo";
+import MapJson from "./Pages/mapJson";
+import Incre from "./Pages/Increment";
+import CssBs from "./Pages/CssBs";
+import Home from "./Pages/Home";
+import Guest from "./Pages/Guest";
 
 function App() {
   return (
-    <div className="App">
-      <Header irwantoGanteng="This is Header, ini header Loh, inget Header" />
-      <Content />
-      <Incre />
-      <Todo />
-      <Css />
-      <MapArray />
-      <MapJson />
-    </div>
+    <Router>
+      <div className="App">
+        <nav>
+          <ul style={{ display: "flex", flexDirection: "row" }}>
+            <li style={{ marginRight: 50 }}>
+              <Link to="/">Home</Link>
+            </li>
+            <li style={{ marginRight: 50 }}>
+              <Link to="/Todo">Todo</Link>
+            </li>
+            <li style={{ marginRight: 50 }}>
+              <Link to="/Increment">Incrment</Link>
+            </li>
+            <li style={{ marginRight: 50 }}>
+              <Link to="/Cssbs">Css Bootstrap</Link>
+            </li>
+            <li style={{ marginRight: 50 }}>
+              <Link to="/Mapjson">Map JSON</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Switch>
+          <PrivateRoute path="/Todo">
+            <Todos />
+          </PrivateRoute>
+          <PrivateRoute path="/Increment">
+            <Incre />
+          </PrivateRoute>
+
+          <PrivateRoute path="/Cssbs">
+            <CssBs />
+          </PrivateRoute>
+
+          <PrivateRoute path="/Mapjson" component={MapJson} />
+          <PrivateRoute path="/Guest" component={Guest} />
+
+          <Route path="/" component={Home} />
+        </Switch>
+      </div>
+    </Router>
   );
 }
 
-// export default class Conditional extends Component {
-//   render() {
-//     const isLoggedin = true;
-//     if (isLoggedin) {
-//       return <App />;
-//     } else {
-//       return <GuestPage />;
-//     }
-//   }
-// }
+const fakeAuth = {
+  isAuthenticate: true,
+  Authenticated(cb) {
+    fakeAuth.isAuthenticate = true;
+    setTimeout(cb, 50); //fake Async
+  },
+  signOut(cb) {
+    fakeAuth.isAuthenticate = false;
+    setTimeout(cb, 50);
+  },
+};
 
-export default function Conditional() {
-  const [isLoggedin] = useState(true);
-
-  return <div>{isLoggedin ? <App /> : <GuestPage />}</div>;
+function PrivateRoute({ children, ...rest }) {
+  return (
+    <Route
+      {...rest}
+      render={({ location }) =>
+        fakeAuth.isAuthenticate ? (
+          children
+        ) : (
+          <Redirect to={{ pathname: "/Login", state: { from: location } }} />
+        )
+      }
+    />
+  );
 }
+
+export default App;

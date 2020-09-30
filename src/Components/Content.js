@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import Name from "../Components/Name";
+import { Link } from "react-router-dom";
 
 //Class Component
 
@@ -35,16 +36,24 @@ function Content() {
 
   return (
     <div className="App-header">
+      <br></br>
+      <br></br>
+      <br></br>
       <p>
         Selamat Data Batch #{getBatch()} Botcamp {bootcamp}
       </p>
 
       <button onClick={() => exAlert()}>Hit Me</button>
-
+      <br></br>
+      <br></br>
+      <Link to="/Guest">Logout</Link>
+      <br></br>
       <img
         src="https://vignette.wikia.nocookie.net/onepiece/images/e/e1/Monkey_D._Garp_Anime_Infobox.png/revision/latest?cb=20140914022458"
         style={{ width: "300px", height: "300px" }}
       />
+      <br></br>
+      <br></br>
       <br></br>
       <img
         src="https://upload.wikimedia.org/wikipedia/commons/1/10/Zayn_Wiki_%28cropped%29.jpg"
