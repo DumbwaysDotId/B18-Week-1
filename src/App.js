@@ -7,6 +7,9 @@ import Content from "./Components/Content";
 import Incre from "./Pages/Increment";
 import Todo from "./Pages/Todo";
 import GuestPage from "./Pages/Guest";
+import Css from "./Pages/Css";
+import MapArray from "./Pages/mapArray";
+import MapJson from "./Pages/mapJson";
 
 //Import Pages
 
@@ -28,6 +31,9 @@ function App() {
       <Content />
       <Incre />
       <Todo />
+      <Css />
+      <MapArray />
+      <MapJson />
     </div>
   );
 }
@@ -44,7 +50,7 @@ function App() {
 // }
 
 export default function Conditional() {
-  const [isLoggedin] = useState(false);
+  const [isLoggedin] = useState(true);
 
   return <div>{isLoggedin ? <App /> : <GuestPage />}</div>;
 }
