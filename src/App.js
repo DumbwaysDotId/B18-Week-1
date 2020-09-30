@@ -5,6 +5,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import Content from "./Components/Content";
 import Incre from "./Pages/Increment";
+import Todo from "./Pages/Todo";
 
 //Import Pages
 
@@ -25,6 +26,7 @@ function App() {
       <Header irwantoGanteng="This is Header, ini header Loh, inget Header" />
       <Content />
       <Incre />
+      <Todo />
     </div>
   );
 }
